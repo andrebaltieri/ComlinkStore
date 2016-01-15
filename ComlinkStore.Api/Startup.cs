@@ -12,6 +12,8 @@ namespace ComlinkStore.Api
         {
             var config = new HttpConfiguration();
 
+            ConfigureWebApi(config);
+
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
         }

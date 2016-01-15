@@ -123,8 +123,19 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\TesteController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ComlinkStore.Domain\ComlinkStore.Domain.csproj">
+      <Project>{0ecbaea4-e256-4fb7-a730-bb996290990c}</Project>
+      <Name>ComlinkStore.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ComlinkStore.Infra\ComlinkStore.Infra.csproj">
+      <Project>{d8aaee45-85ed-4709-b4b2-44cc5f962955}</Project>
+      <Name>ComlinkStore.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
