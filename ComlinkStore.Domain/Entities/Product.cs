@@ -10,9 +10,9 @@ namespace ComlinkStore.Domain.Entities
             Name = name;
             Price = price;
             QuantityOnHand = quantityOnHand;
-            Category = category;
 
             Register();
+            AddCategory(category);
         }
 
         public int Id { get; private set; }
@@ -38,10 +38,21 @@ namespace ComlinkStore.Domain.Entities
         public void UpdateInventory(int quantity)
         {
             if (quantity <= 0)
-                throw new Exception("Quantidade Inválida");
+                throw new ArgumentOutOfRangeException("Quantidade Inválida");
 
             if (quantity > QuantityOnHand)
-                throw new Exception("A quantidade solicitada ultrapassa a quantidade em estoque. Quantidade disponível: " + QuantityOnHand);
+                throw new ArgumentOutOfRangeException("A quantidade solicitada ultrapassa a quantidade em estoque. Quantidade disponível: " + QuantityOnHand);
+
+            QuantityOnHand = QuantityOnHand - quantity;
+        }
+
+        public void AddCategory(Category category)
+        {
+            if (category == null)
+                throw new InvalidOperationException("Categoria inválida");
+
+            CategoryId = category.Id;
+            Category = category;
         }
     }
 }

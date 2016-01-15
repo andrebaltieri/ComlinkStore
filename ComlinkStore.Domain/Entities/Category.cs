@@ -18,5 +18,10 @@ namespace ComlinkStore.Domain.Entities
         public int Id { get; private set; }
         public string Name { get; private set; }
         public ICollection<Product> Products { get; set; }
+
+        public void ChangeName(string name)
+        {
+            Name = name;
+        }
     }
 }

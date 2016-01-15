@@ -1,11 +1,10 @@
 ﻿using ComlinkStore.Domain.Entities;
 using ComlinkStore.Domain.Repositories;
-using ComlinkStore.Infra.Data;
-using System;
-using System.Linq;
-using System.Data.Entity;
-using System.Collections.Generic;
 using ComlinkStore.Domain.Specs;
+using ComlinkStore.Infra.Data;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 
 namespace ComlinkStore.Infra.Repositories
 {
@@ -16,6 +15,11 @@ namespace ComlinkStore.Infra.Repositories
         public ProductRepository(ComlinkStoreDataContext context)
         {
             _context = context;
+        }
+
+        public Product GetById(int id)
+        {
+            return _context.Products.Find(id);
         }
 
         public List<Product> GetProductsInStock()

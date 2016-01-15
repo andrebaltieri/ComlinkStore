@@ -5,6 +5,7 @@ namespace ComlinkStore.Domain.Repositories
 {
     public interface IProductRepository
     {
+        Product GetById(int id);
         List<Product> GetProductsInStock();
         List<Product> GetProductsOutOfStock();
         void Save(Product product);
