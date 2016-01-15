@@ -142,6 +142,8 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Helpers\AuthorizationServerProvider.cs" />
     <Compile Include="Helpers\DependencyRegister.cs" />
     <Compile Include="Helpers\ErrorMessage.cs" />
     <Compile Include="Helpers\UnityResolverHelper.cs" />

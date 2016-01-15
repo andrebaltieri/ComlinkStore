@@ -58,6 +58,7 @@ namespace ComlinkStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/categories")]
+        [Authorize]
         public Task<HttpResponseMessage> Post([FromBody]Category category)
         {
             try
@@ -76,6 +77,7 @@ namespace ComlinkStore.Api.Controllers
 
         [HttpPut]
         [Route("v1/categories/{id:int}")]
+        [Authorize]
         public Task<HttpResponseMessage> Put(int id, [FromBody]Category category)
         {
             try
@@ -97,6 +99,7 @@ namespace ComlinkStore.Api.Controllers
 
         [HttpDelete]
         [Route("v1/categories/{id:int}")]
+        [Authorize]
         public Task<HttpResponseMessage> Delete(int id)
         {
             try

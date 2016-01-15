@@ -76,6 +76,7 @@ namespace ComlinkStore.Api.Controllers
 
         [HttpPost]
         [Route("v1/products")]
+        [Authorize]
         public Task<HttpResponseMessage> Post([FromBody]dynamic body)
         {
             try

@@ -26,5 +26,10 @@ namespace ComlinkStore.Domain.Entities
             if (Password.Length <= 3)
                 throw new Exception("Senha Inválida");
         }
+
+        public bool Authenticate(string password)
+        {
+            return Password == password;
+        }
     }
 }

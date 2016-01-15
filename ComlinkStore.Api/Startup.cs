@@ -1,9 +1,12 @@
 ﻿using ComlinkStore.Api.Helpers;
+using Microsoft.Owin;
 using Microsoft.Owin.Cors;
+using Microsoft.Owin.Security.OAuth;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
+using System;
 using System.Web.Http;
 
 namespace ComlinkStore.Api
@@ -17,6 +20,7 @@ namespace ComlinkStore.Api
 
             ConfigureDependencyInjection(config, container);
             ConfigureWebApi(config);
+            ConfigureOAuth(app);
 
             app.UseCors(CorsOptions.AllowAll);
             app.UseWebApi(config);
@@ -46,6 +50,21 @@ namespace ComlinkStore.Api
         {
             DependencyRegister.Register(container);
             config.DependencyResolver = new UnityResolverHelper(container);
+        }
+
+        public void ConfigureOAuth(IAppBuilder app)
+        {
+            OAuthAuthorizationServerOptions OAuthServerOptions = new OAuthAuthorizationServerOptions()
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/api/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = new AuthorizationServerProvider()
+            };
+
+            // Token Generation
+            app.UseOAuthAuthorizationServer(OAuthServerOptions);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }
