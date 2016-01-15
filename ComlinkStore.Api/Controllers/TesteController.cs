@@ -2,24 +2,26 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using System.Linq;
+using ComlinkStore.Domain.Repositories;
+using ComlinkStore.Infra.Repositories;
 
 namespace ComlinkStore.Api.Controllers
 {
     [RoutePrefix("api")]
-    public class TesteController : ApiController
+    public class ProductController : ApiController
     {
+        private IProductRepository _repository;
+
+        public ProductController(IProductRepository repository)
+        {
+            _repository = repository;
+        }
+
         [HttpGet]
         [Route("v1/products")]
         public List<Product> ObterTodos()
         {
-            var products = new List<Product>();
-            products.Add(new Product("Produto 1", 19, 5, null));
-            products.Add(new Product("Produto 2", 19, 4, null));
-            products.Add(new Product("Produto 3", 19, 3, null));
-            products.Add(new Product("Produto 4", 19, 2, null));
-            products.Add(new Product("Produto 5", 19, 0, null));
-
-            return products;
+            return _repository.GetProductsInStock();
         }
 
         [HttpGet]
