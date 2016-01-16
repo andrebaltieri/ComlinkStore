@@ -1,0 +1,40 @@
+<div class="page-header">
+    <h1>Categorias <small>Lista de Categorias</small></h1>
+</div>
+
+<a href="#/categories/create" class="btn btn-info btn-lg pull-right" ng-if="token">+ Adicionar</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th colspan="2">
+                <div class="col-md-8">
+                    <input type="text" class="form-control" ng-model="search" placeholder="Filtrar...">
+                </div>
+                <div class="col-md-4 text-right">
+                    <select ng-model="order">
+                        <option value="-name">Descrescente</option>
+                        <option value="name">Crescente</option>
+                    </select>
+                </div>                
+            </th>
+        </tr>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Categoria</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="category in vm.categories | filter: { 'name': search } | orderBy: order">
+            <td class="text-center">{{ category.id }}</td>
+            <td class="text-center">{{ category.name }}</td>
+            <td class="text-center">
+                <div class="btn-group" role="group" aria-label="...">
+                    <a href="#/categories/edit/{{ category.id }}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="" class="btn btn-danger btn-sm" ng-click="vm.remove(category.id, $index)"><i class="fa fa-remove"></i></a>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

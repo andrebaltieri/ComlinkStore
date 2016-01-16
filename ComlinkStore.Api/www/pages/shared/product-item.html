@@ -1,0 +1,17 @@
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">{{ product.name }}</div>
+        <div class="panel-body">
+            <h4 class="text-center">
+                {{ product.price | currency: 'R$'}}
+            </h4>
+            <p class="text-center">
+                Quantidade em estoque: <strong>{{ product.quantityOnHand }}</strong>
+            </p>
+            <br>
+            <button class="btn btn-success btn-lg btn-block" ng-click="vm.addToCart(product)">
+                <i class="fa fa-shopping-cart"></i> Adicionar
+            </button>
+        </div>
+    </div>
+</div>

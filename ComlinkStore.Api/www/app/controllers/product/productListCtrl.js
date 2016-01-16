@@ -2,9 +2,9 @@
     'use strict';
     angular.module('ComLink').controller('productListCtrl', productListCtrl);
 
-    productListCtrl.$inject = ['$rootScope', '$http', 'SETTINGS'];
+    productListCtrl.$inject = ['$rootScope', '$http', 'SETTINGS', 'productRepository'];
 
-    function productListCtrl($rootScope, $http, SETTINGS) {
+    function productListCtrl($rootScope, $http, SETTINGS, productRepository) {
         var vm = this;
         vm.categories = [];
         vm.products = [];
@@ -20,8 +20,10 @@
         
         function loadProductsByCategory(category) {
             vm.categoryId = category;
-            $http.get(SETTINGS.SERVICE_URL + 'v1/products/category/' + category)
-                .then(success).catch(fail);
+            productRepository
+                .getByCategory(category)
+                .then(success)
+                .catch(fail);
 
             function success(result) {
                 vm.products = result.data;
@@ -32,8 +34,10 @@
         }
         
         function loadCategories() {
-            $http.get(SETTINGS.SERVICE_URL + 'v1/categories')
-                .then(success).catch(fail);
+            productRepository
+                .getCategories()
+                .then(success)
+                .catch(fail);
 
             function success(result) {
                 vm.categories = result.data;
