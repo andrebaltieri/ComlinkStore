@@ -40,6 +40,11 @@ namespace ComlinkStore.Infra.Repositories
                 .ToList();
         }
 
+        public List<Product> GetByCategory(int id)
+        {
+            return _context.Products.Where(x => x.CategoryId == id).ToList();
+        }
+
         public void Save(Product product)
         {
             _context.Products.Add(product);

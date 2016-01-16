@@ -1,0 +1,23 @@
+<div class="page-header animated tada">
+    <h1>Carrinho <small>Produtos no carrinho</small></h1>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th class="text-center">Item</th>
+            <th class="text-center col-md-1">Qtde</th>
+            <th class="text-center">Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in vm.cart">
+            <td class="text-center">{{ item.product.name }}</td>
+            <td class="text-center col-md-1"><input type="number" ng-model="item.quantity" ng-change="vm.calculateTotal()"></td>
+            <td class="text-center">{{ (item.quantity * item.product.price) | currency: 'R$'}}</td>
+        </tr>
+    </tbody>
+</table>
+<h3 class="text-right">
+    Total: {{ vm.total | currency : 'R$' }}
+</h3>

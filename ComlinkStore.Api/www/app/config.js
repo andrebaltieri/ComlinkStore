@@ -6,10 +6,16 @@
 
     angular.module('ComLink').run(function ($rootScope, $location) {
         $rootScope.token = '';
+        $rootScope.cart = [];
 
         var token = localStorage.getItem('token');
         if (token != '') {
             $rootScope.token = token;
+        }
+        
+        var cart = localStorage.getItem('cart');
+        if (cart != '') {
+            $rootScope.cart = angular.fromJson(cart);
         }
 
         $rootScope.$on("$routeChangeStart", function (event, next, current) {

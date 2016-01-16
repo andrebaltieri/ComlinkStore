@@ -74,6 +74,29 @@ namespace ComlinkStore.Api.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("v1/products/category/{id:int}")]
+        public Task<HttpResponseMessage> GetByCategory(int id)
+        {
+            try
+            {
+                var result = _productRepository.GetByCategory(id);
+                return CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return CreateErrorResponse(HttpStatusCode.InternalServerError,
+                    "Ops, algo deu errado",
+                    ex.Message);
+            }
+            catch
+            {
+                return CreateErrorResponse(HttpStatusCode.InternalServerError,
+                    "Ops, algo deu errado",
+                    "Falha ao cadastrar produtos");
+            }
+        }
+
         [HttpPost]
         [Route("v1/products")]
         [Authorize]

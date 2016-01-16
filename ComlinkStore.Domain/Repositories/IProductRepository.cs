@@ -8,6 +8,7 @@ namespace ComlinkStore.Domain.Repositories
         Product GetById(int id);
         List<Product> GetProductsInStock();
         List<Product> GetProductsOutOfStock();
+        List<Product> GetByCategory(int id);
         void Save(Product product);
         void Update(Product product);
     }

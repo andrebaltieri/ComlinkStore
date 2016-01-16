@@ -1,0 +1,30 @@
+<div class="page-header">
+    <h1>Produtos <small>Listagem de Produtos</small></h1>
+</div>
+
+<div class="col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+        <li ng-class="{ 'active' : category.id == vm.categoryId }" ng-repeat="category in vm.categories">
+            <a href="" ng-click="vm.loadProducts(category.id)">{{ category.name }}</a>
+        </li>
+    </ul>
+</div>
+<div class="col-md-9">
+    <div class="col-md-4" ng-repeat="product in vm.products">
+        <div class="panel panel-default">
+            <div class="panel-heading">{{ product.name }}</div>
+            <div class="panel-body">
+                <h4 class="text-center">
+                    {{ product.price | currency: 'R$'}}
+                </h4>
+                <p class="text-center">
+                    Quantidade em estoque: <strong>{{ product.quantityOnHand }}</strong>
+                </p>
+                <br>
+                <button class="btn btn-success btn-lg btn-block" ng-click="vm.addToCart(product)">
+                    <i class="fa fa-shopping-cart"></i> Adicionar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

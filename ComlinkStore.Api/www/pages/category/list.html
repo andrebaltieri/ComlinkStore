@@ -22,12 +22,19 @@
         <tr>
             <th class="text-center">#</th>
             <th class="text-center">Categoria</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         <tr ng-repeat="category in vm.categories | filter: { 'name': search } | orderBy: order">
             <td class="text-center">{{ category.id }}</td>
             <td class="text-center">{{ category.name }}</td>
+            <td class="text-center">
+                <div class="btn-group" role="group" aria-label="...">
+                    <a href="#/categories/edit/{{ category.id }}" class="btn btn-default btn-sm"><i class="fa fa-edit"></i></a>
+                    <a href="" class="btn btn-danger btn-sm" ng-click="vm.remove(category.id, $index)"><i class="fa fa-remove"></i></a>
+                </div>
+            </td>
         </tr>
     </tbody>
 </table>
