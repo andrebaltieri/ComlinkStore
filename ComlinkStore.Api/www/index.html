@@ -1,68 +1,31 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="ComLink">
 
 <head>
     <title></title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="https://bootswatch.com/paper/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 </head>
 
-<body ng-app="app">
-    <h1>Hello!</h1>
+<body>
+    <div ng-include="'pages/shared/header.html'"></div>
 
-    <div class="container" ng-controller="homeCtrl">
-        <table class="table table-striped">
-            <tr>
-                <td class="text-center">Tarefa</td>
-                <td class="text-center">Status</td>
-                <td class="text-center">Ação</td>
-            </tr>
-            <tr ng-repeat="todo in todos">
-                <td>{{ todo.title }}</td>
-                <td class="text-center">
-                    <input type="checkbox" ng-model="todo.done">
-                </td>
-                <td class="text-center">Ação</td>
-            </tr>
-        </table>
-        <hr>
-        <p class="text-center">
-            <input type="text" ng-model="todoTitle" class="form-control" placeholder="Adicionar Tarefa">
-            <button class="btn btn-success btn-lg" ng-click="add()">Adicionar</button>
-        </p>
-        <br><br>
-        <p class="text-center">
-            <button class="btn btn-default btn-lg" ng-click="save()">SALVAR</button>
-        </p>
-    </div>
+    <div class="container" ng-view></div>
+
+    <script src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script>
-        angular.module('app', []); // Cria um módulo
-        
-        angular.module('app').controller('homeCtrl', function($scope){
-            $scope.todoTitle = '';
-            $scope.todos = [
-                { title:'Passear com o cachorro', done: false },
-                { title:'Happy Hour com a galera', done: true }
-            ];
-            
-            load();
-            
-            $scope.add = function(){
-                $scope.todos.push({ title: $scope.todoTitle, done: false });
-            };
-            
-            $scope.save = function(){
-                console.log($scope.todos);
-                localStorage.setItem('todos', angular.toJson($scope.todos));
-            }
-            
-            function load(){
-                $scope.todos = angular.fromJson(localStorage.getItem('todos'));
-            }
-        });
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/routes.js"></script>
+    <script src="app/config.js"></script>
+    <script src="app/controllers/home/homeCtrl.js"></script>
+    <script src="app/controllers/account/loginCtrl.js"></script>
+    <script src="app/controllers/category/categoryListCtrl.js"></script>
+    <script src="app/controllers/category/categoryCreateCtrl.js"></script>
 </body>
 
 </html>
